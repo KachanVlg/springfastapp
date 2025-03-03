@@ -18,15 +18,7 @@ public class CoffeeController {
     private final CoffeeRepository coffeeRepository;
 
     public CoffeeController(CoffeeRepository coffeeRepository) {
-
         this.coffeeRepository = coffeeRepository;
-
-        this.coffeeRepository.saveAll(List.of(
-                new Coffee("Café Cereza"),
-                new Coffee("Café Ganador"),
-                new Coffee("Café Lareño"),
-                new Coffee("Café Três Pontas")
-        ));
     }
 
     //@RequestMapping(value = "/coffees", method = RequestMethod.GET) - идентичная аннотации снизу
@@ -52,7 +44,7 @@ public class CoffeeController {
         if(coffeeRepository.existsById(id)) {
             return new ResponseEntity<>(coffeeRepository.save(coffee), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(coffeeRepository.save(coffee), HttpStatus.CREATED);
         }
     }
 
