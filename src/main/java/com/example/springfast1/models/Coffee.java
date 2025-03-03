@@ -1,14 +1,19 @@
 package com.example.springfast1.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.UUID;
 
-public class Coffee {
-    private String id;
-    private String name;
 
-    public Coffee() {};
+@Entity
+public class Coffee {
+
+    @Id
+    private String id;
+
+    private String name;
 
     public Coffee(String id, String name) {
         this.id = id;
@@ -17,6 +22,14 @@ public class Coffee {
 
     public Coffee(String name) {
         this(UUID.randomUUID().toString(), name);
+    }
+
+    public Coffee() {
+
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getId() {
